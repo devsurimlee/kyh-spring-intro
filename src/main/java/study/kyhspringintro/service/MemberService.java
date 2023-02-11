@@ -9,7 +9,15 @@ import java.util.Optional;
 
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    // new: 의존성 주입 - 테스트와 같은 MemoryMemberRepository 사용
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+    // old
+//    private final MemberRepository memberRepository = new MemoryMemberRepository();
 
     /**
      * 회원 가입
